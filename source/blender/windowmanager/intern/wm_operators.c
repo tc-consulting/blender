@@ -2898,6 +2898,13 @@ static int radial_control_modal(bContext *C, wmOperator *op, const wmEvent *even
       break;
 
     case LEFTMOUSE:
+      if (event->val == KM_RELEASE) {
+        /* done; value already set */
+        RNA_property_update(C, &rc->ptr, rc->prop);
+        ret = OPERATOR_FINISHED;
+      }
+      break;
+
     case EVT_PADENTER:
     case EVT_RETKEY:
       /* done; value already set */
